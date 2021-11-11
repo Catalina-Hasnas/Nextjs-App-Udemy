@@ -1,6 +1,7 @@
 import { MongoClient } from 'mongodb';
+import { username, pass } from '../../mongodbconfig';
 
-const url = 'mongodb+srv://catalinaHasnas:j00nfnzDSPeU0Hlo@cluster0.gwhv7.mongodb.net/meetups?retryWrites=true&w=majority';
+const url = `mongodb+srv://${username}:${pass}@cluster0.gwhv7.mongodb.net/meetups?retryWrites=true&w=majority`;
 
 const client = new MongoClient(url);
 
@@ -12,7 +13,6 @@ async function handler(req, res) {
 
     try {
       await client.connect();
-      console.log("Connected correctly to server");
     } catch (err) {
       res.status(500).json({ message: 'Could not connect to database.' });
       return;
